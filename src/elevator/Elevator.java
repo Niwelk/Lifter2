@@ -115,7 +115,7 @@ import java.util.List;
 
 
     public void moveUp() {
-        if (this.currentFloor >= MAX_FLOOR) {  // Было == sizeFloors-1
+        if (this.currentFloor >= MAX_FLOOR) {  // Было == sizeFloors-1 // для улучшение теперь константа
             System.out.println("[ERROR]: Лифт не может подняться вверх (уже на максимальном этаже)..");
             return;
         }
@@ -126,7 +126,7 @@ import java.util.List;
     }
 
     public void moveDown() {
-        if (this.currentFloor <= 0) {  // Было == 0, теперь <= 0
+        if (this.currentFloor <= 0) {  // Было == 0, теперь <= 0  // возникал баг при работе обработки значений <0
             System.out.println("[ERROR]: Лифт не может опуститься вниз (уже на минимальном этаже)..");
             return;
         }

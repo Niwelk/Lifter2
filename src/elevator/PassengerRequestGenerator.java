@@ -3,10 +3,24 @@ package elevator;
 import java.util.Random;
 
 /**
- * Генератор запросов на вызов лифтов.
- * Создаёт случайные запросы (PassengerRequest) автоматически.
+ * Класс PassengerRequestGenerator представляет генератор случайных запросов пассажиров
+ * для лифтовой системы. Работает в отдельном потоке и автоматически создает запросы
+ * через случайные интервалы времени.
+ *
+ * <p>Основные функции:
+ * <ul>
+ *   <li>Автоматическая генерация запросов с случайными этажами вызова и назначения</li>
+ *   <li>Работа в фоновом потоке с настраиваемой частотой генерации</li>
+ *   <li>Возможность генерации пакета запросов по требованию</li>
+ *   <li>Интеграция с {@link Dispatcher} для передачи сгенерированных запросов</li>
+ * </ul>
+ *
+ * @see Dispatcher
+ * @see PassengerRequest
+ * @see Random
+ * @see Thread
  */
-public class PassengerRequestGenerator implements Runnable {
+ public class PassengerRequestGenerator implements Runnable {
     private final Dispatcher dispatcher;
     private final Random random = new Random();
     private volatile boolean running = true;
