@@ -8,11 +8,8 @@ public class Main {
 
         System.out.println("\n/\\/\\/\\/ АВТОМАТИЧЕСКИ СИСТЕМА УПРАВЛЕНИЯ ЛИФТАМИ ЗАПУЩЕНА /\\/\\/\\/");
 
-
-        // 1. Настройка количества лифтов
         System.out.print("[i] Введите количество лифтов (1-5): ");
         int elevatorCount = getValidInput(scanner, 1, 5, 3);
-
 
         System.out.println("[!] Выбирите режим работы:");
         System.out.println("\t[ФИКСИРОВАННЫЙ] программа работает засчёт конкретного кол-ва итераций:  выберите 1");
@@ -22,11 +19,11 @@ public class Main {
 
         int iterations = 0;
         if (mode == 1) {
-            System.out.print("┌─ Введите количество итераций (5-50): ");
+            System.out.print("[!] Введите количество итераций (5-50): ");
             iterations = getValidInput(scanner, 5, 50, 20);
-            System.out.println("└─ Будет выполнено итераций: " + iterations + "\n");
+            System.out.println("[!] Будет выполнено итераций: " + iterations + "\n");
         } else {
-            System.out.println("└─ Режим: бесконечный (остановите вручную)\n");
+            System.out.println("[!] Режим: бесконечный (остановите вручную)\n");
         }
 
         Dispatcher dispatcher = new Dispatcher();
@@ -45,7 +42,7 @@ public class Main {
         if (mode == 1) {
 
             for (int i = 1; i <= iterations; i++) {
-                System.out.println("=== ИТЕРАЦИЙ" + i);
+                System.out.println("= = = = = = = = =");
                 Thread.sleep(3000);
 
                 if (i % 5 == 0 || i == iterations) {

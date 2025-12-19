@@ -42,7 +42,7 @@ import java.util.List;
     private static final int MAX_FLOOR = 9;
 
     private Thread elevatorThread;
-    private volatile boolean running = true;  // ← ВАЖНОЕ ПОЛЕ!
+    private volatile boolean running = true;
 
     public Elevator() {
         this.id = nextId++;
@@ -73,7 +73,6 @@ import java.util.List;
         return id;
     }
 
-    // === МЕТОДЫ ДЛЯ DISPATCHER ===
 
     public void start() {
         elevatorThread = new Thread(this, "Elevator-" + id);
@@ -114,7 +113,6 @@ import java.util.List;
         }
     }
 
-    // === МЕТОДЫ ДВИЖЕНИЯ (у тебя уже есть) ===
 
     public void moveUp() {
         if (this.currentFloor >= MAX_FLOOR) {  // Было == sizeFloors-1
@@ -154,7 +152,6 @@ import java.util.List;
         System.out.println("[!] Лифт #"+id+" закрывает двери на этаже "+currentFloor);
     }
 
-    // === ПОТОК ЛИФТА ===
 
     @Override
     public void run() {
@@ -163,7 +160,7 @@ import java.util.List;
         while (running) {
             try {
                 performCycle();
-                Thread.sleep(1000);  // пауза между действиями
+                Thread.sleep(1000);
 
             } catch (InterruptedException e) {
                 System.out.println("Лифт #" + id + " остановлен");
@@ -173,16 +170,14 @@ import java.util.List;
     }
 
     private void performCycle() {
-        // Если нет целей - стоим
         if (floors.isEmpty()) {
-            // Только если мы еще не остановлены - меняем состояние
+
             if (status != Status.STOPPED || direction != Direction.NO_ACTIVE) {
-                moveStop(); // Вызываем stop только при изменении состояния
+                moveStop();
             }
             return;
         }
 
-        // Двигаемся к ближайшей цели
         Integer target = getNextTarget();
         if (target != null) {
             if (target > currentFloor) {
@@ -191,7 +186,6 @@ import java.util.List;
                 moveDown();
             }
 
-            // Проверяем, не приехали ли
             if (currentFloor == target) {
                 handleArrival(target);
             }
@@ -201,7 +195,6 @@ import java.util.List;
     private Integer getNextTarget() {
         if (floors.isEmpty()) return null;
 
-        // Ищем ближайшую цель в текущем направлении
         if (direction == Direction.UP) {
             for (int floor : floors) {
                 if (floor > currentFloor) return floor;
@@ -212,7 +205,6 @@ import java.util.List;
             }
         }
 
-        // Если ничего не нашли - берём первую цель
         return floors.iterator().next();
     }
 
@@ -224,7 +216,7 @@ import java.util.List;
                 ": пассажиры выходят/заходят");
 
         try {
-            Thread.sleep(2000); // Симуляция посадки/высадки
+            Thread.sleep(2000);
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }

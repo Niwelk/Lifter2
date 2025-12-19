@@ -1,6 +1,22 @@
 package elevator;
 
-public class PassengerRequest {
+/**
+ * Класс PassengerRequest представляет запрос пассажира на перемещение между этажами.
+ * Содержит информацию о начальном и целевом этаже, времени создания запроса,
+ * а также определяет направление движения.
+ *
+ * <p>Каждый запрос содержит:
+ * <ul>
+ *   <li>{@code floorCall} - этаж, с которого пассажир вызывает лифт</li>
+ *   <li>{@code floorTarget} - целевой этаж, на который пассажир хочет попасть</li>
+ *   <li>{@code timeOfCreating} - время создания запроса в миллисекундах</li>
+ * </ul>
+ *
+ * @see Direction
+ * @see IllegalArgumentException
+ */
+
+ public class PassengerRequest {
     private int floorCall;
     private int floorTarget;
     private long timeOfCreating;

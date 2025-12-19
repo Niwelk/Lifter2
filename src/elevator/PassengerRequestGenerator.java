@@ -12,7 +12,6 @@ public class PassengerRequestGenerator implements Runnable {
     private volatile boolean running = true;
     private Thread generatorThread;
 
-    // Настройки генерации
     private static final int MIN_FLOOR = 0;
     private static final int MAX_FLOOR = 9;
     private static final int MIN_INTERVAL = 2000;
@@ -75,7 +74,7 @@ public class PassengerRequestGenerator implements Runnable {
             dispatcher.callElevator(fromFloor, toFloor);
 
             try {
-                Thread.sleep(500); // Небольшая пауза между запросами в пакете
+                Thread.sleep(500);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
                 break;
